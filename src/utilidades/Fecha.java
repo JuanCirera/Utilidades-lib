@@ -1,6 +1,7 @@
 package utilidades;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Gestiona fechas, almacenando dia, mes y año siguiendo unas comprobaciones para que sean válidos.
@@ -16,6 +17,9 @@ public class Fecha {
     protected int month;
     protected int year;
 
+//    private static int minYear;
+//    private static int maxYear;
+
     //CONSTRUCTOR VACIO
     public Fecha(){
         //Valores por defecto
@@ -26,9 +30,12 @@ public class Fecha {
 
     //CONSTRUCTOR CON PARAMETROS
     public Fecha(int day, int month, int year){
-        this.day=day;
-        this.month=month;
-        this.year=year;
+        if(checkYear() && checkMonth() && checkDay()) {
+            //Si se cumplen la condicion triple se guardaran los valores en cada atributo
+            this.year = year;
+            this.month = month;
+            this.day = day;
+        }
     }
 
     //GETTERS
@@ -72,6 +79,13 @@ public class Fecha {
         }
     }
 
+//    public static void setMinYear(int year) {
+//        minYear = year;
+//    }
+//
+//    public static void setMaxYear(int year) {
+//        maxYear = year;
+//    }
 
     //FUNCIONES
     /**
@@ -85,8 +99,8 @@ public class Fecha {
         int actual=calendar.get(Calendar.YEAR);
 
         //La diferencia de tiempo no deberá exceder los 105 años y no será menor de 1 año.
-        if (actual - year >= 1 && actual - year <= 105){
-
+//        if (actual - year >= 1 && actual - year <= 200){ Este if solo servía para el proyecto de federacion (practica 4)
+        if (actual - year >= 1 && year > 0){
             int division=year%4;
             int division2=year%100;
 
@@ -141,6 +155,26 @@ public class Fecha {
             control=false;
         }
         return control;
+    }
+
+
+    /**
+     * Funcion que comprueba si el dia de un objeto Fecha cae en fin de semana
+     * @return boolean - true si el dia coincide con sábado o domingo, false si no.
+     * */
+    public boolean isWeekend(){
+        Calendar cal=Calendar.getInstance(); //se crea un objeto calendar
+        //despues usando el objeto Fecha del parametro se hace este apaño para convertirlo en un objeto calendar
+        //metiendole con su setter los valores del objeto fecha, año, mes, dia.
+        cal.set(year,month,day);
+        //Se "transforma" el numero de dia a "cadena" por asi decirlo
+        int day= cal.get(Calendar.DAY_OF_WEEK); //Se hace un get al atributo DAY_Of_WEEK que coje valores con el nombre de los 7 dias
+
+        if(day==Calendar.SATURDAY || day==Calendar.SUNDAY){
+            return true;    //Si el dia coincide con sábado o domingo
+        }else{
+            return false;
+        }
     }
 
 }

@@ -24,11 +24,18 @@ public class PeticionDatos {
 
     //**FUNCIONES**
 
+    private static void InputMismatchException(){
+        System.out.println(ANSI_RED+"Error: Tipo de dato introducido incorrecto."+ANSI_RESET);
+    }
+
+
+
+
     /**
      * Función que pide un número entero por teclado y lo devuelve.
      * @return Entero válido introducido por teclado.
      */
-    public static int pedirEntero(){
+    public static int pedirEntero() throws InputMismatchException{
         Scanner sc=new Scanner(System.in);  //Instancia del objeto tipo Scanner
         int n=0;
         boolean control=false;  //Variable de control
