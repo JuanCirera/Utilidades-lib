@@ -1,6 +1,7 @@
 package utilidades;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * @author Juan Fco Cirera Rosa
@@ -175,6 +176,7 @@ public class Faker {
         return areas[indice];
     }
 
+
     /**
      * Devuelve hombre/mujer.
      * @return String
@@ -184,5 +186,101 @@ public class Faker {
         int indice=r.nextInt(sexo.length);
         return sexo[indice];
     }
+
+
+    /**
+     * Función que genera un NIF/NIE, lo chequea y lo devuelve.
+     * @return NIE o NIF válido.
+     */
+    public static String generarNIF_NIE(){
+
+        String nie = "", letraDni = "", letraNie = "";
+        String dni = "";
+        int n, div; //Variables para el cálculo del dígito de control
+        boolean control = false;  //true=Para el bucle, false=Sigue el bucle
+
+        /*Array para las letras que corresponden a cada dígito de control. Decido inicializar manualmente el array,
+        ya que las letras no siguen el orden habitual. No encuentro otra forma de hacerlo.*/
+        String letras[]={"T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E"};
+
+
+        do {
+            //Este bloque inicial genera los 8 numeros de forma aleatoria y los concatena con una letra de control aleatoria
+            Random r = new Random();
+            int nDni = 0;
+            String numeros="";
+            //Se generan 8 numeros uno a uno, concatenándose con el anterior.
+            for (int i = 0; i < 8; i++) {
+                nDni = r.nextInt(9);
+                numeros = numeros + Integer.toString(nDni); //Convierto el entero en un String para poder concatenar, para que no se sumen.
+            }
+
+            //Se genera un nº aleatorio que será una posicion del array letras[]
+            Random r1 = new Random();
+            int indice = r1.nextInt(letras.length);
+            String letraC = letras[indice];
+
+            //Se concatenan los 8 numeros con la letra de control
+            dni=numeros+letraC;
+
+            //Y todo esto para tener que dividir de nuevo el dni para comprobarlo aquí abajo...
+
+
+            //Si la longitud del dni introducido es igual a 9 posiciones se comprobara si es válido.
+            if (dni.length() == 9) { //La longitud es la misma para todos los formatos
+
+                //NIE - Comprobación de que se ha introducido un NIE. Si la cadena empieza por alguna de esas tres letras.
+                if (dni.matches("^(X|Y|Z).*$")) {
+
+                    if (dni.matches("^(X).*$")) {
+                        nie = "0" + dni.substring(1, 9); //Como para la letra de control X su digito es 0, se concatena al string inicial omitiendo la posicion 0.
+                    } else if (dni.matches("^(Y).*$")) {
+                        nie = "1" + dni.substring(1, 9); //Como para la letra de control X su digito es 0, se concatena al string inicial omitiendo la posicion 0.
+                    } else if (dni.matches("^(Z).*$")) {
+                        nie = "2" + dni.substring(1, 9); //Como para la letra de control X su digito es 0, se concatena al string inicial omitiendo la posicion 0.
+                    }
+
+                    String letraControl = nie.substring(0, 8);
+                    n = Integer.parseInt(letraControl);
+                    letraNie = nie.substring(8);
+                    div=n%23;
+                }else {
+
+                    /*Para poder calcular el dígito de control necesito solo los numeros, por lo que se guarda en digitos lo que hay hasta la
+                    posicion 8, que es ya la letra.*/
+                    String digitos = dni.substring(0, 8);
+                    //Para comprobar si es válido también necesito la letra por separado.
+                    letraDni = dni.substring(8);
+                    //Una vez separados los digitos de la letra hay que convertirlos a enteros para poder operar con ellos.
+                    n = Integer.parseInt(digitos);
+                    //Se divide la variable n que guarda los digitos recien convertidos entre 23 para sacar su resto.
+                    div = n % 23;
+                }
+
+                //Mediante este for se va comprobando todas las posiciones hasta que alguna coincida con el resto de la division anterior.
+                for (int i=0;i<letras.length;i++){
+                    if (letras[i]==letras[div]) {
+                        String resultado=letras[i]; //Una vez encontrada la coincidencia se guarda en "resultado" la letra que contiene esa posicion del array.
+
+                        if (resultado.equals(letraDni) | resultado.equals(letraNie)){   /*Si la letra que contiene "resultado" es igual a la que el usuario ha introducido
+                                                         se para el do-while y se devuelve el dni completo*/
+                            control = true;
+                        }else{
+                            control = false;
+                        }
+                    }
+                }
+            } else {
+                control=false;
+            }
+
+        }while (!control);  //Mientras control sea falso el bucle seguirá pidiendo dni válidos.
+
+        return dni; //Se devuelve el dni completo
+    }
+
+//    public static void main(String[] args) {
+//        System.out.println(generarNIF_NIE());
+//    }
 
 }
