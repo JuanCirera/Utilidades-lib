@@ -32,14 +32,29 @@ public class Faker {
 
     private static String puestosFutbol[]={"delantero","defensa","portero","centrocampista"};
 
+    //Nombres hospitales
+    private static String hospitales[]={"Torrecárdenas","Hospital de Poniente","Hospital de Guadix", "El Toyo", "Virgen de las Nieves", "Comarcal Santa Ana de Motril", "Comarcal de Baza", "Comarcal la Inmaculada",
+                                        "Comarcal de la Axarquia", "Virgen de la Victoria", "Hospital Costa del Sol", "Reina Sofía", "Universitario Virgen Macarena", "Mediterráneo"};
+    //Nombres clinicas
+    private static String clinicas[]={"HLA Mediterráneo","Ginealmeria","Policlínica del Poniente","Clínica El Sur","Clínicas Esquivel Málaga", "CelluMed Clinic","Clínica Médica Hiperbárica de Estepona"};
+
+    //Especialidades médicas
+    private static String especialidades[]={"traumatología","dermatología","oftalmología","neurología"};
+
+    //Areas hospital
+    private static String areas[]={"traumatología","dermatología","oftalmología","neurología","urgencias","quirofano","administracion"};
+
+    //Sexo
+    private static String sexo[]={"hombre","mujer"};
+
 
     /**
      * Devuelve un nombre almacenado en un array de tipo cadena.
      * @return String
      * */
     public static String devolverNombre(){
-        Random r1=new Random();
-        int indice=r1.nextInt(nombres.length);
+        Random r=new Random();
+        int indice=r.nextInt(nombres.length);
         return nombres[indice];
     }
 
@@ -48,8 +63,8 @@ public class Faker {
      * @return String
      * */
     public static String devolverApellidos(){
-        Random r2=new Random();
-        int indice=r2.nextInt(apellidos.length);
+        Random r=new Random();
+        int indice=r.nextInt(apellidos.length);
         return apellidos[indice];
     }
 
@@ -58,8 +73,8 @@ public class Faker {
      * @return String
      * */
     public static String devolverProvincias(){
-        Random r3=new Random();
-        int indice=r3.nextInt(provincias.length);
+        Random r=new Random();
+        int indice=r.nextInt(provincias.length);
         return provincias[indice];
     }
 
@@ -68,8 +83,8 @@ public class Faker {
      * @return String
      * */
     public static String devolverPuestosBaloncesto(){
-        Random r4=new Random();
-        int indice=r4.nextInt(puestosBaloncesto.length);
+        Random r=new Random();
+        int indice=r.nextInt(puestosBaloncesto.length);
         return puestosBaloncesto[indice];
     }
 
@@ -78,8 +93,8 @@ public class Faker {
      * @return String
      * */
     public static String devolverPuestosBalomano(){
-        Random r5=new Random();
-        int indice=r5.nextInt(puestosBalonmano.length);
+        Random r=new Random();
+        int indice=r.nextInt(puestosBalonmano.length);
         return puestosBalonmano[indice];
     }
 
@@ -88,8 +103,8 @@ public class Faker {
      * @return String
      * */
     public static String devolverPuestosFutbol(){
-        Random r4=new Random();
-        int indice=r4.nextInt(puestosFutbol.length);
+        Random r=new Random();
+        int indice=r.nextInt(puestosFutbol.length);
         return puestosFutbol[indice];
     }
 
@@ -99,8 +114,8 @@ public class Faker {
      * @return String
      * */
     public static String devolverNombresEquipos(){
-        Random r7=new Random();
-        int indice=r7.nextInt(nombresEquipos.length);
+        Random r=new Random();
+        int indice=r.nextInt(nombresEquipos.length);
         return nombresEquipos[indice];
     }
 
@@ -112,14 +127,62 @@ public class Faker {
      * @return int
      * */
     public static int devolverEnteros(boolean cero, int limite){
-        Random r5=new Random();
+        Random r=new Random();
         if(cero) {
-            return r5.nextInt(0, limite);
+            return r.nextInt(0, limite);
         }else{
-            return r5.nextInt(1, limite);
+            return r.nextInt(1, limite);
         }
     }
 
+    /**
+     * Devuelve el nombre de un hospital aleatorio.
+     * @return String
+     * */
+    public static String devolverHospitales(){
+        Random r=new Random();
+        int indice=r.nextInt(hospitales.length);
+        return hospitales[indice];
+    }
 
+    /**
+     * Devuelve el nombre de una clinica aleatoria.
+     * @return String
+     * */
+    public static String devolverClinicas(){
+        Random r=new Random();
+        int indice=r.nextInt(clinicas.length);
+        return clinicas[indice];
+    }
+
+    /**
+     * Devuelve una especialidad aleatoria.
+     * @return String
+     * */
+    public static String devolverEspecialidad(){
+        Random r=new Random();
+        int indice=r.nextInt(especialidades.length);
+        return especialidades[indice];
+    }
+
+    /**
+     * Devuelve un area medica aleatoria.
+     * @return String
+     * */
+    public static String devolverArea(){
+        Random r=new Random();
+        int indice=r.nextInt(areas.length);
+        return areas[indice];
+    }
+
+    /**
+     * Devuelve hombre/mujer.
+     * @return String
+     * */
+    public static String devolverSexo(){
+        Random r=new Random();
+        int indice=r.nextInt(sexo.length);
+        return sexo[indice];
+    }
 
 }
