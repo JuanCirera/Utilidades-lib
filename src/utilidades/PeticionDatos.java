@@ -1255,7 +1255,8 @@ public class PeticionDatos {
 //        pedirEnteroRango(5,10);
 //        pedirDecimalPositivo(false, "Introduce un decimal: ");
 //        pedirDecimalRango(5.7,10.6, 3);
-//        pedirCadena("Introduce una cadena: ");
+//        String cadena=pedirCadenaLimite(true, true, 70, "Cadena: ");
+//        System.out.println(cadena);
 //        pedirCadenaLimite(false, false, 10, "Introduce una cadena: ");
 //        pedirNIF_NIE("Introduce un NIF/NIE: ");
 //    }

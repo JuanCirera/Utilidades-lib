@@ -118,12 +118,45 @@ public class Fecha {
         return control;
     }
 
+
+    /**
+     * Comprueba si el año es bisiesto, además de que esté entre el 0 y el actual.
+     * @param year - año a comprobar, dato ajeno a la clase Fecha.
+     * @return boolean
+     * */
+    public static boolean checkYear(int year){
+        boolean control=false; //He tenido que usar una variable de control porque en el if anidado no podía hacer el return.
+        //Instancio un objeto de la API Calendar para obtener el año actual.
+        Calendar calendar = Calendar.getInstance();
+        int actual=calendar.get(Calendar.YEAR);
+
+        //La diferencia de tiempo no deberá exceder los 105 años y no será menor de 1 año.
+//        if (actual - year >= 1 && actual - year <= 200){ Este if solo servía para el proyecto de federacion (practica 4)
+        if (actual - year >= 1 && year > 0){
+            int division=year%4;
+            int division2=year%100;
+
+            if(division==0 || division2==0){
+                //Devuelve true si el año es bisiesto
+                control=true;
+
+            }else if(division!=0 && division2!=0){
+                //Devuelve false si no es bisiesto
+                control=false;
+            }
+        }else{
+            System.out.println(ANSI_RED+"Introduce un valor válido (1-"+actual+")"+ANSI_RESET);
+        }
+        return control;
+    }
+
+
     /**
      * Comprueba si el valor del mes está entre 1 y 12.
      * @return boolean
      * */
     private boolean checkMonth(){
-        boolean control=false;
+//        boolean control=false;
         if(month>0 && month<=12){
             return true;
         }else{
@@ -131,6 +164,23 @@ public class Fecha {
             return false;
         }
     }
+
+
+    /**
+     * Comprueba si el valor del mes está entre 1 y 12.
+     * @param month - mes que se quiere comprobar, ajeno a la clase Fecha.
+     * @return boolean
+     * */
+    public static boolean checkMonth(int month){
+//        boolean control=false;
+        if(month>0 && month<=12){
+            return true;
+        }else{
+            System.out.println(ANSI_RED+"Introduce un valor válido (1-12)"+ANSI_RESET);
+            return false;
+        }
+    }
+
 
     /**
      * Comprueba si el dia está entre 1 y 31, 1-28 si el mes es febrero y el año NO bisiesto, 1-29 si es febrero y año bisiesto.
@@ -156,6 +206,33 @@ public class Fecha {
         }
         return control;
     }
+
+
+//    /**
+//     * Comprueba si el dia está entre 1 y 31, 1-28 si el mes es febrero y el año NO bisiesto, 1-29 si es febrero y año bisiesto.
+//     * @param day - día que se quiere comprobar, externo de la clase Fecha.
+//     * @return boolean
+//     * */
+//    public static boolean checkDay(int day){
+//        boolean control=false;
+//        if(!checkYear() && month!=2){
+//            if(day>0 && day<=31) { //Vamos a pensar que todos los meses tienen 31 para no complicar mucho la funcion
+//                control = true;
+//            }
+//        }else if(!checkYear() && month==2){
+//            if(day>0 && day<=28) {
+//                control = true;
+//            }
+//        }else if(checkYear() && month==2){
+//            if(day>0 && day<=29) {
+//                control = true;
+//            }
+//        }else{
+//            System.out.println(ANSI_RED+"Error. El dia introducido no existe."+ANSI_RESET);
+//            control=false;
+//        }
+//        return control;
+//    }
 
 
     /**
