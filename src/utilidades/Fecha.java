@@ -236,7 +236,27 @@ public class Fecha {
 
 
     /**
-     * Funcion que comprueba si el dia de un objeto Fecha cae en fin de semana
+     * Funcion que comprueba si la fecha pasada por parámetro cae en fin de semana
+     * @return boolean - true si el dia coincide con sábado o domingo, false si no.
+     * */
+    public static boolean isWeekend(int day, int month, int year){
+        Calendar cal=Calendar.getInstance(); //se crea un objeto calendar
+        //despues usando el objeto Fecha del parametro se hace este apaño para convertirlo en un objeto calendar
+        //metiendole con su setter los valores del objeto fecha, año, mes, dia.
+        cal.set(year,month,day);
+        //Se "transforma" el numero de dia a "cadena" por asi decirlo
+        int dia= cal.get(Calendar.DAY_OF_WEEK); //Se hace un get al atributo DAY_Of_WEEK que coje valores con el nombre de los 7 dias
+
+        if(dia==Calendar.SATURDAY || dia==Calendar.SUNDAY){
+            return true;    //Si el dia coincide con sábado o domingo
+        }else{
+            return false;
+        }
+    }
+
+
+    /**
+     * Funcion que comprueba si el dia del objeto fecha cae en fin de semana
      * @return boolean - true si el dia coincide con sábado o domingo, false si no.
      * */
     public boolean isWeekend(){
@@ -245,13 +265,17 @@ public class Fecha {
         //metiendole con su setter los valores del objeto fecha, año, mes, dia.
         cal.set(year,month,day);
         //Se "transforma" el numero de dia a "cadena" por asi decirlo
-        int day= cal.get(Calendar.DAY_OF_WEEK); //Se hace un get al atributo DAY_Of_WEEK que coje valores con el nombre de los 7 dias
+        int dia= cal.get(Calendar.DAY_OF_WEEK); //Se hace un get al atributo DAY_Of_WEEK que coje valores con el nombre de los 7 dias
 
-        if(day==Calendar.SATURDAY || day==Calendar.SUNDAY){
+        if(dia==Calendar.SATURDAY || dia==Calendar.SUNDAY){
             return true;    //Si el dia coincide con sábado o domingo
         }else{
             return false;
         }
     }
 
+    @Override
+    public String toString() {
+        return day + "/" + month + "/" + year;
+    }
 }

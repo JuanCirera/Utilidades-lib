@@ -40,10 +40,10 @@ public class Faker {
     private static String clinicas[]={"HLA Mediterráneo","Ginealmeria","Policlínica del Poniente","Clínica El Sur","Clínicas Esquivel Málaga", "CelluMed Clinic","Clínica Médica Hiperbárica de Estepona"};
 
     //Especialidades médicas
-    private static String especialidades[]={"traumatología","dermatología","oftalmología","neurología"};
+    private static String especialidades[]={"traumatologia","dermatologia","oftalmologia","neurologia"};
 
     //Areas hospital
-    private static String areas[]={"traumatología","dermatología","oftalmología","neurología","urgencias","quirofano","administracion"};
+    private static String areas[]={"traumatologia","dermatologia","oftalmologia","neurologia","urgencias","quirofano","administracion"};
 
     //Sexo
     private static String sexo[]={"hombre","mujer"};
