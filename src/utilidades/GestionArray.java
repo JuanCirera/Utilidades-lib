@@ -428,6 +428,38 @@ public class GestionArray implements Comparable{
         } /* fin while d */
     } /* fin shell_asc */
 
+    /**
+     * Funcion de ordenacion de arrays. SHELL
+     * @param v vector de enteros
+     * @return ordena ascendentemente el vector.
+     * */
+    public static void shell_desc (int v[])
+    {
+        int d, i, ele;
+        boolean ordenado;
+        int num_ele = v.length; // número de elementos
+        d = num_ele/2; // distancia de comparación
+
+        /* La ordenación se realiza mientras la distancia de comparación sea menor igual que 1 */
+        while (d >= 1) {
+            ordenado = false;
+            /* ordena el vector para la distancia d */
+            while (!ordenado) { // !ordenado es como poner ordenado == false
+                ordenado = true;
+                for (i=0; i < num_ele-d; i++)
+                    // si el elemento i es mayor que i+d los intercambia
+                    if (v[i] < v[i+d]) {
+                        ele = v[i];
+                        v[i] = v[i+d];
+                        v[i+d] = ele;
+                        ordenado = false; // el vector no estaba ordenado
+                    } /* fin if */
+            } /* fin while !ordenado */
+            /* calcula la nueva distancia de comparación d */
+            d = d/2;
+        } /* fin while d */
+    } /* fin shell_asc */
+
 
     /**
      * Funcion de ordenación de arrays. SHELL
@@ -683,4 +715,10 @@ public class GestionArray implements Comparable{
     }
 
 
+//    public static void main(String[] args) {
+//        int arr[]={3,5,1,2,4,8,7};
+////        shell_asc(arr);
+//        shell_desc(arr);
+//        mostrarVectorEnteros(arr);
+//    }
 }

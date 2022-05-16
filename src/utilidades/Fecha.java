@@ -1,12 +1,13 @@
 package utilidades;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Gestiona fechas, almacenando dia, mes y año siguiendo unas comprobaciones para que sean válidos.
  * */
-public class Fecha {
+public class Fecha implements Serializable {
 
     //CONSTANTES
     public static final String ANSI_RESET = "\u001B[0m";
